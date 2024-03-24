@@ -8,8 +8,7 @@ public class OpenDoor : MonoBehaviour
     public GameObject keyNeeded;
     public GameObject openText;
     public GameObject keyMissingText;
-    public AudioSource openDoorSFX;
-    public AudioSource lockedDoorSFX;
+    public AudioController audioController;
 
     public bool inReach;
     public bool isOpen;
@@ -52,7 +51,7 @@ public class OpenDoor : MonoBehaviour
         if (keyNeeded.activeInHierarchy == true && inReach && Input.GetButtonDown("Interact"))
         {
             keyNeeded.SetActive(false);
-            openDoorSFX.Play();
+            audioController.PlayOpenDoorSFX();
             openDoorAnim.SetBool("open", true);
             openText.SetActive(false);
             keyMissingText.SetActive(false);
@@ -62,7 +61,7 @@ public class OpenDoor : MonoBehaviour
         else if (keyNeeded.activeInHierarchy == false && inReach && Input.GetButtonDown("Interact"))
         {
             openText.SetActive(false);
-            lockedDoorSFX.Play();
+            audioController.PlayLockedDoorSFX();
             keyMissingText.SetActive(true);
         }
         else if (isOpen)
