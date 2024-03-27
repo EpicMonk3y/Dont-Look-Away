@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("not moveing");
             ai.speed = 0;
             ai.SetDestination(transform.position);
+            ai.transform.LookAt(player);
         }
         if (!GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
         {
