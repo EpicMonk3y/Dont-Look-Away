@@ -10,7 +10,6 @@ public class Blinking : MonoBehaviour
 
     private void Start()
     {
-        blink = GetComponent<Animator>();
         StartCoroutine(blinking());
     }
 
