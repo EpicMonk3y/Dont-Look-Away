@@ -12,6 +12,8 @@ public class AudioController : MonoBehaviour
     public AudioClip flashLightOffSFX;
     public AudioClip batteryPickUpSFX;
     public AudioClip notePickUpSFX;
+    public AudioClip jumpScareSFX;
+    public AudioClip breathingHeavySFX;
 
     AudioSource audioSource;
 
@@ -59,5 +61,15 @@ public class AudioController : MonoBehaviour
     public void PlayNotePickUpSFX()
     {
         audioSource.PlayOneShot(notePickUpSFX, 1f);
+    }
+
+    public void PlayJumpScareSFX()
+    {
+        audioSource.PlayOneShot(jumpScareSFX, 1f);
+    }
+
+    public void PlayBreathingHeavySFX()
+    {
+        audioSource.PlayOneShot(breathingHeavySFX, 1f);
     }
 }
