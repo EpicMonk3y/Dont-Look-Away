@@ -8,6 +8,7 @@ TagManager:
   - FirstRoomTrigger
   - Look
   - StorageRoomTrigger
+  - SurgeryRoomTrigger
   layers:
   - Default
   - TransparentFX

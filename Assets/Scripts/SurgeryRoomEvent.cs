@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FirstRoomEvent : MonoBehaviour
+public class SurgeryRoomEvent : MonoBehaviour
 {
     [Header("1st Room")]
    public AudioController audioController;
@@ -25,15 +25,14 @@ public class FirstRoomEvent : MonoBehaviour
         OpenDoor();
         if(isDone)
         {
-            GetComponent<FirstRoomEvent>().enabled = false;
+            GetComponent<SurgeryRoomEvent>().enabled = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "FirstRoomTrigger")
+        if(other.gameObject.tag == "SurgeryRoomTrigger")
         {
-            Debug.Log("test");
             audioController.PlaySlamDoorSFX();
             first_Room_Door.SetBool("slam", true);
             scream.Play();

@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public Camera playerCam;
     public float aiSpeed;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
