@@ -8,6 +8,7 @@ public class StorageRMJumpScare : MonoBehaviour
     public GameObject storage_Room_Trigger;
     public GameObject noteNeeded;
     public Animator storage_Room_Anim;
+    public Animator lunch_Room_Anim;
     public bool isDone;
     public bool interactedWithNote;
     // Start is called before the first frame update
@@ -42,6 +43,7 @@ public class StorageRMJumpScare : MonoBehaviour
                 audioController.PlayJumpScareSFX();
                 audioController.PlayBreathingHeavySFX();
                 storage_Room_Anim.Play("Mannequin Jump Scare 1");
+                lunch_Room_Anim.Play("Lunch Room Door Open");
                 isDone = true;
                 Destroy(other.gameObject);
             }

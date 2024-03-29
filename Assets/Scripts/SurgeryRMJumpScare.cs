@@ -24,11 +24,6 @@ public class SurgeryRMJumpScare : MonoBehaviour
         {
             GetComponent<SurgeryRMJumpScare>().enabled = false;
         }
-
-        if (keyNeeded.activeInHierarchy == false)
-        {
-            surgery_Room_Trigger.SetActive(true);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +36,7 @@ public class SurgeryRMJumpScare : MonoBehaviour
                 audioController.PlayBreathingHeavySFX();
                 surgery_Room_Anim.Play("Mannequin Jump Scare 1");
                 isDone = true;
-                surgery_Room_Trigger.SetActive(false);
+                Destroy(other.gameObject);
             }
         }
          
