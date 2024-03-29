@@ -11,9 +11,12 @@ public class ReadNotes : MonoBehaviour
 
     public GameObject pickUpText;
 
-    public AudioController audioController;
+    public DialogueSystem dialogue;
 
     public bool inReach;
+
+
+    
 
 
     // Start is called before the first frame update
@@ -45,13 +48,42 @@ public class ReadNotes : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Interact") && inReach)
+        if (Input.GetButtonDown("Interact") && inReach)
         {
             notesUI.SetActive(true);
             player.GetComponent<FirstPersonMovement>().enabled = false;
             playerLook.GetComponent<FirstPersonLook>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
+            if (notesUI.name.Equals("SurgeryRoomNote"))
+            {
+                dialogue.PlayVoice(0);
+                StartCoroutine(waitForAudioFinish());
+                
+            }
+            else if (notesUI.name.Equals("StorageRoomNote"))
+            {
+                dialogue.PlayVoice(2);
+                StartCoroutine(waitForAudioFinish());
+
+            }
+        }
+
+         
+    }
+
+    IEnumerator waitForAudioFinish()
+    {
+        yield return new WaitUntil(() => !dialogue.audioSource.isPlaying);
+        yield return new WaitForSeconds(1);
+        if (notesUI.name.Equals("SurgeryRoomNote"))
+        {
+            dialogue.PlayVoice(1);
+        }
+        if (notesUI.name.Equals("StorageRoomNote"))
+        {
+            dialogue.PlayVoice(3);
         }
     }
 
@@ -61,6 +93,7 @@ public class ReadNotes : MonoBehaviour
         player.GetComponent<FirstPersonMovement>().enabled = true;
         playerLook.GetComponent<FirstPersonLook>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
 }

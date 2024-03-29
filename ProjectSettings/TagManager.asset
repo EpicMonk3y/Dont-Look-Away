@@ -9,6 +9,7 @@ TagManager:
   - Look
   - StorageRoomTrigger
   - SurgeryRoomTrigger
+  - SurgeryRoomJSTrigger
   layers:
   - Default
   - TransparentFX
