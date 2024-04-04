@@ -68,6 +68,12 @@ public class ReadNotes : MonoBehaviour
                 StartCoroutine(waitForAudioFinish());
 
             }
+            else if (notesUI.name.Equals("BathRoomNote"))
+            {
+                dialogue.PlayVoice(4);
+                StartCoroutine(waitForAudioFinish());
+
+            }
         }
 
          
@@ -84,6 +90,10 @@ public class ReadNotes : MonoBehaviour
         if (notesUI.name.Equals("StorageRoomNote"))
         {
             dialogue.PlayVoice(3);
+        }
+        if (notesUI.name.Equals("BathRoomNote"))
+        {
+            dialogue.PlayVoice(5);
         }
     }
 
