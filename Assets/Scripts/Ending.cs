@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ending : MonoBehaviour
@@ -9,6 +10,7 @@ public class Ending : MonoBehaviour
     public GameObject noteNeeded;
     public GameObject enemy;
     public ReadNotes readNotes;
+    public GameObject BathhroomTriggerMain;
 
 
     
@@ -16,17 +18,20 @@ public class Ending : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (noteNeeded.activeInHierarchy)
+       
+    }
+
+   void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "BathRoomTrigger")
+        {
+            BathhroomTriggerMain.SetActive(true);
+        }
+        else if((other.gameObject.tag == "BathRoomTrigger2"))
         {
             wall1.SetActive(true);
             wall2.SetActive(true);
-            if(readNotes.lastNoteIsDone)
-            {
-                Debug.Log("test");
-                StartCoroutine(wait());
-                
-
-            }
+            StartCoroutine(wait());
         }
     }
 

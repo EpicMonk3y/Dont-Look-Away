@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioController : MonoBehaviour
 {
@@ -15,12 +17,28 @@ public class AudioController : MonoBehaviour
     public AudioClip jumpScareSFX;
     public AudioClip breathingHeavySFX;
     public AudioClip jumpScareFinalSFX;
+    public AudioClip uiClickSFX;
+
+    [SerializeField] Slider sFXVolumeSlider;
+    [SerializeField] Slider musicVolumeSlider;
+    //[SerializeField] TextMeshProUGUI volumeTextUI = null;
+    [SerializeField] AudioMixer audioMixer;
 
     AudioSource audioSource;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            LoadVolume();
+        }
+        else
+        {
+            SetSFXVolume();
+            SetMusicVolume();
+        }
     }
 
 
@@ -76,6 +94,36 @@ public class AudioController : MonoBehaviour
 
     public void PlayJumpScareFinalSFX()
     {
-        audioSource.PlayOneShot(jumpScareFinalSFX, 1f);
+        audioSource.PlayOneShot(jumpScareFinalSFX, 0.5f);
+    }
+
+    public void PlayUIClickSFX()
+    {
+        audioSource.PlayOneShot(uiClickSFX, 1f);
+    }
+
+
+
+    public void SetSFXVolume()
+    {
+        float volume = sFXVolumeSlider.value;
+        audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
+    }
+
+    public void SetMusicVolume()
+    {
+        float volume = musicVolumeSlider.value;
+        audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+
+    private void LoadVolume()
+    {
+        sFXVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+
+        SetSFXVolume();
+        SetMusicVolume();
     }
 }

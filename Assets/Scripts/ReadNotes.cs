@@ -96,7 +96,9 @@ public class ReadNotes : MonoBehaviour
         {
             dialogue.PlayVoice(5);
             lastNoteIsDone = true;
+            
         }
+
     }
 
     public void ExitNote()

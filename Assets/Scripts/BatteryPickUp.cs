@@ -7,7 +7,7 @@ public class BatteryPickUp: MonoBehaviour
 {
     public GameObject flashlight;
     public GameObject pickUpText;
-    public AudioSource pickUpSFX;
+    public AudioController audioController;
 
 
     public bool inReach;
@@ -44,7 +44,7 @@ public class BatteryPickUp: MonoBehaviour
         if (inReach && Input.GetButtonDown("Interact"))
         {
             flashlight.GetComponent<Flashlight>().batteries += 1;
-            pickUpSFX.Play();
+            audioController.PlaybatteryPickUpSFX();
             pickUpText.SetActive(false);
             inReach = false;
             Destroy(gameObject);

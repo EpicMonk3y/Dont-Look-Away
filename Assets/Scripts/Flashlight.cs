@@ -9,9 +9,7 @@ public class Flashlight : MonoBehaviour
     public Light _light;
     public TMP_Text _batteryLife;
     public TMP_Text _batteries;
-
-    public AudioSource flashLightOn;
-    public AudioSource flashLightOff;
+    public AudioController audioController;
 
     public float batteries = 0;
     public float lifetime;
@@ -38,12 +36,12 @@ public class Flashlight : MonoBehaviour
         {
             if (_light.enabled)
             {
-                flashLightOff.Play();
+                audioController.PlayFlashLightOffSFX();
                 _light.enabled = false;
             }
             else
             {
-                flashLightOn.Play();
+                audioController.PlayFlashLightOnSFX();
                 _light.enabled = true;
             }
         }

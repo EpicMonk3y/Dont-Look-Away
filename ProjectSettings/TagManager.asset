@@ -10,6 +10,8 @@ TagManager:
   - StorageRoomTrigger
   - SurgeryRoomTrigger
   - SurgeryRoomJSTrigger
+  - BathRoomTrigger
+  - BathRoomTrigger2
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class KeyPickUpItem : MonoBehaviour
     public GameObject pickupItem;
     public GameObject pickUpText;
     public GameObject inventoryOB;
-    public AudioSource keyPickUpSFX;
+    public AudioController audioController;
 
     public bool inReach;
 
@@ -43,7 +43,7 @@ public class KeyPickUpItem : MonoBehaviour
     {
         if (inReach && Input.GetButtonDown("Interact"))
         {
-            keyPickUpSFX.Play();
+            audioController.PlayPickUpKeySFX();
             inventoryOB.SetActive(true) ;
             pickUpText.SetActive(false);
             pickupItem.SetActive(false);
