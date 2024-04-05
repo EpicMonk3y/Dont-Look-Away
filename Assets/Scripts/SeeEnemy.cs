@@ -1,13 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class SeeEnemy : MonoBehaviour
 {
-    public GameObject currentHitObject;
+    public GameObject playerCam;
+    public GameObject enemyCam;
+    public Animator enemyAnimator;
+    public AudioController audioController;
 
+    public GameObject currentHitObject;
+    public Blinking blinking;
     public float sphereRadius;
     public float maxDistance;
     public LayerMask layerMask;
@@ -37,7 +41,7 @@ public class SeeEnemy : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
+            if (blinking.isPlaying == false && Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
             {
                 currentHitObject = hit.transform.gameObject;
                 currentHitDistance = hit.distance;
@@ -47,7 +51,7 @@ public class SeeEnemy : MonoBehaviour
                 ai.SetDestination(enemy.transform.position);
                 ai.transform.LookAt(transform.position);
             }
-            else
+            else if(blinking.isPlaying || !Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
             {
                 ai.speed = aiSpeed;
                 dest = transform.position;
@@ -56,7 +60,23 @@ public class SeeEnemy : MonoBehaviour
                 currentHitObject = null;
             }
         }
+
+        if (Vector3.Distance(transform.position, enemy.transform.position) <= 2){
+            playerCam.SetActive(false);
+            enemyCam.SetActive(true);
+            enemyAnimator.SetTrigger("jumpscare");
+            ai.speed = 0;
+            audioController.PlayJumpScareFinalSFX();
+            StartCoroutine(waitForAnimFinish());
+        }
         
+    }
+
+    IEnumerator waitForAnimFinish()
+    {
+        yield return new WaitForSeconds(2);
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(0);
     }
 
     private void OnDrawGizmosSelected()

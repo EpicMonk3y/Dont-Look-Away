@@ -14,6 +14,7 @@ public class AudioController : MonoBehaviour
     public AudioClip notePickUpSFX;
     public AudioClip jumpScareSFX;
     public AudioClip breathingHeavySFX;
+    public AudioClip jumpScareFinalSFX;
 
     AudioSource audioSource;
 
@@ -71,5 +72,10 @@ public class AudioController : MonoBehaviour
     public void PlayBreathingHeavySFX()
     {
         audioSource.PlayOneShot(breathingHeavySFX, 1f);
+    }
+
+    public void PlayJumpScareFinalSFX()
+    {
+        audioSource.PlayOneShot(jumpScareFinalSFX, 1f);
     }
 }

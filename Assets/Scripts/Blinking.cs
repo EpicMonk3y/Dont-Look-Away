@@ -7,10 +7,26 @@ public class Blinking : MonoBehaviour
     public Animator blink;
     public float minBlinkTime, maxBlinkTime;
     bool looping = true;
+    public bool isPlaying = false;
 
     private void Start()
     {
+        
         StartCoroutine(blinking());
+
+    }
+
+    private void Update()
+    {
+
+        if (blink.GetCurrentAnimatorStateInfo(0).IsName("Eyes Idle"))
+        {
+            isPlaying = false;
+        }
+        else
+        {
+            isPlaying = true;
+        }
     }
 
     IEnumerator blinking()
@@ -20,5 +36,6 @@ public class Blinking : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minBlinkTime, maxBlinkTime));
             blink.SetTrigger("blink");
         }
+        
     }
 }

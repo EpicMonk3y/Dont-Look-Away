@@ -14,6 +14,7 @@ public class ReadNotes : MonoBehaviour
     public DialogueSystem dialogue;
 
     public bool inReach;
+    public bool lastNoteIsDone = false;
 
 
     
@@ -94,6 +95,7 @@ public class ReadNotes : MonoBehaviour
         if (notesUI.name.Equals("BathRoomNote"))
         {
             dialogue.PlayVoice(5);
+            lastNoteIsDone = true;
         }
     }
 
