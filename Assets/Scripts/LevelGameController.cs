@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelGameController : MonoBehaviour
 {
@@ -43,5 +44,10 @@ public class LevelGameController : MonoBehaviour
         firstPersonMovement.enabled = true;
         settingsActive = false;
         Time.timeScale = 1f;
+    }
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

@@ -26,6 +26,7 @@ public class SeeEnemy : MonoBehaviour
     public float aiSpeed;
 
     public Flashlight flashlight;
+    public GameObject ui;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +48,6 @@ public class SeeEnemy : MonoBehaviour
             {
                 currentHitObject = hit.transform.gameObject;
                 currentHitDistance = hit.distance;
-
-                Debug.Log("not moveing");
                 ai.speed = 0;
                 ai.SetDestination(enemy.transform.position);
                 ai.transform.LookAt(transform.position);
@@ -58,7 +57,6 @@ public class SeeEnemy : MonoBehaviour
                 ai.speed = aiSpeed;
                 dest = transform.position;
                 ai.destination = dest;
-                Debug.Log("moveing");
                 currentHitObject = null;
             }
         }
@@ -71,6 +69,7 @@ public class SeeEnemy : MonoBehaviour
             audioController.PlayJumpScareFinalSFX();
             flashlight.lifetime = 10;
             flashlight._light.enabled = true;
+            ui.SetActive(false);
             StartCoroutine(waitForAnimFinish());
         }
         

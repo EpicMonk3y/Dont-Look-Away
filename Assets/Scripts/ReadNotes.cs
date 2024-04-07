@@ -54,6 +54,7 @@ public class ReadNotes : MonoBehaviour
             notesUI.SetActive(true);
             player.GetComponent<FirstPersonMovement>().enabled = false;
             playerLook.GetComponent<FirstPersonLook>().enabled = false;
+            player.GetComponentInChildren<HeadBob>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
@@ -106,6 +107,7 @@ public class ReadNotes : MonoBehaviour
         notesUI.SetActive(false);
         player.GetComponent<FirstPersonMovement>().enabled = true;
         playerLook.GetComponent<FirstPersonLook>().enabled = true;
+        player.GetComponentInChildren<HeadBob>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         
     }

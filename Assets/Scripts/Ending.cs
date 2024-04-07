@@ -11,6 +11,7 @@ public class Ending : MonoBehaviour
     public GameObject enemy;
     public ReadNotes readNotes;
     public GameObject BathhroomTriggerMain;
+    public Animator lunchRoomDoor;
 
 
     
@@ -31,6 +32,7 @@ public class Ending : MonoBehaviour
         {
             wall1.SetActive(true);
             wall2.SetActive(true);
+            lunchRoomDoor.Play("Lunch Room Door Idle");
             StartCoroutine(wait());
         }
     }

@@ -33,4 +33,9 @@ public class GameController : MonoBehaviour
         startButton.enabled = true;
         settingsButton.enabled = true;
     }
+
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }
