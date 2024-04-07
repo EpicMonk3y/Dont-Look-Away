@@ -22,7 +22,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] Slider sFXVolumeSlider;
     [SerializeField] Slider musicVolumeSlider;
     //[SerializeField] TextMeshProUGUI volumeTextUI = null;
-    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] AudioMixer sfx;
+    [SerializeField] AudioMixer music;
 
     AudioSource audioSource;
 
@@ -107,14 +108,14 @@ public class AudioController : MonoBehaviour
     public void SetSFXVolume()
     {
         float volume = sFXVolumeSlider.value;
-        audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
+        sfx.SetFloat("sfx", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 
     public void SetMusicVolume()
     {
         float volume = musicVolumeSlider.value;
-        audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        music.SetFloat("music", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 

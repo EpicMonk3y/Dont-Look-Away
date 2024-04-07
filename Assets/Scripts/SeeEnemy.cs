@@ -25,6 +25,8 @@ public class SeeEnemy : MonoBehaviour
     Vector3 dest;
     public float aiSpeed;
 
+    public Flashlight flashlight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,8 @@ public class SeeEnemy : MonoBehaviour
             enemyAnimator.SetTrigger("jumpscare");
             ai.speed = 0;
             audioController.PlayJumpScareFinalSFX();
+            flashlight.lifetime = 10;
+            flashlight._light.enabled = true;
             StartCoroutine(waitForAnimFinish());
         }
         
@@ -74,7 +78,7 @@ public class SeeEnemy : MonoBehaviour
 
     IEnumerator waitForAnimFinish()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(0);
     }

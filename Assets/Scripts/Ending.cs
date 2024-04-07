@@ -37,7 +37,7 @@ public class Ending : MonoBehaviour
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         enemy.SetActive(true);
     }
 }
